@@ -32,21 +32,18 @@ public class Task1 {
 
     /**
      * Возвращает дубликаты пользователей, которые есть в обеих коллекциях
+     * 1. Использован HashSet для ускоренного поиска дубликатов во второй коллекции. ArrayList для быстрого сохранения дубликата.
+     * 2. 0(n).
+     * 3. преобразование Collection в Set - 0(n) т.к. проходимся по всей коллекции.
      */
     public static List<User> findDuplicates(Collection<User> collA, Collection<User> collB) {
-        Set<User> setA = new HashSet<>(collA);
-        Set<User> setB = new HashSet<>(collB);
         List<User> userList = new ArrayList<>();
-        if (setA.size() >= setB.size())
-            iterateSet(setB,setA, userList);
-        else
-            iterateSet(setA, setB, userList);
-        return userList;
-    }
+        Set<User> setA = new HashSet<>(collA);
 
-    private static void iterateSet(Set<User> setA, Set<User> setB, List<User> userList) {
-        for (User user: setA)
-            if (setB.contains(user))
+        for (User user: collB)
+            if (setA.contains(user))
                 userList.add(user);
+
+        return userList;
     }
 }
