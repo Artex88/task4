@@ -35,26 +35,12 @@ public class Task2 {
 
     private static HashMap<Ticket, ComboLunch> internetService = new HashMap<>();
 
-    public static Ticket generateTicket(String name){
-        return new Ticket(new Random().nextLong(), name);
-    }
-
-    public static void addLunchForId(Ticket ticket, ComboLunch comboLunch){
-        internetService.put(ticket,comboLunch);
-    }
-
+    /**
+     * 1. Использован HashMap для эффективного поиска типа ланча по id билета.
+     * 2. О(1).
+     * 3. Получение значения по ключу в HashMap - О(1).
+     */
     public static ComboLunch getLunchForId(Ticket ticket){
         return internetService.get(ticket);
-    }
-
-    public static void main(String[] args) {
-        Ticket a = generateTicket("Bill");
-        Ticket b = generateTicket("John");
-        System.out.println(getLunchForId(a));
-        System.out.println(getLunchForId(b));
-        addLunchForId(a,ComboLunch.Empty);
-        addLunchForId(b, ComboLunch.FoodAndDrinks);
-        System.out.println(getLunchForId(a));
-        System.out.println(getLunchForId(b));
     }
 }

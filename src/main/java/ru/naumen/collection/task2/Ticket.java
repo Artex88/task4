@@ -24,8 +24,7 @@ public class Ticket {
 
         Ticket ticket = (Ticket) o;
 
-        if (id != ticket.id) return false;
-        return Objects.equals(client, ticket.client);
+        return id == ticket.id;
     }
 
     @Override
